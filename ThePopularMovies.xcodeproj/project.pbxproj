@@ -76,6 +76,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F21B94E725A4EB7B004A6150 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2B9D71E25A4E0CE0007BFE4 /* Assets.xcassets */,
+				F2B9D72025A4E0CE0007BFE4 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F21B94EF25A4EC0F004A6150 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F21B94F525A4ED20004A6150 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F2B9D70925A4E0CD0007BFE4 = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +122,11 @@
 		F2B9D71425A4E0CD0007BFE4 /* ThePopularMovies */ = {
 			isa = PBXGroup;
 			children = (
-				F2B9D71525A4E0CD0007BFE4 /* AppDelegate.swift */,
-				F2B9D71725A4E0CD0007BFE4 /* SceneDelegate.swift */,
-				F2B9D71925A4E0CD0007BFE4 /* ViewController.swift */,
-				F2B9D71B25A4E0CD0007BFE4 /* Main.storyboard */,
-				F2B9D71E25A4E0CE0007BFE4 /* Assets.xcassets */,
-				F2B9D72025A4E0CE0007BFE4 /* LaunchScreen.storyboard */,
-				F2B9D72325A4E0CE0007BFE4 /* Info.plist */,
+				F2B9D75525A4E9790007BFE4 /* Application */,
+				F21B94F525A4ED20004A6150 /* Models */,
+				F21B94EF25A4EC0F004A6150 /* Network */,
+				F21B94E725A4EB7B004A6150 /* Resources */,
+				F2B9D75925A4E9890007BFE4 /* Screens */,
 			);
 			path = ThePopularMovies;
 			sourceTree = "<group>";
@@ -126,6 +147,25 @@
 				F2B9D73925A4E0CF0007BFE4 /* Info.plist */,
 			);
 			path = ThePopularMoviesUITests;
+			sourceTree = "<group>";
+		};
+		F2B9D75525A4E9790007BFE4 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F2B9D72325A4E0CE0007BFE4 /* Info.plist */,
+				F2B9D71525A4E0CD0007BFE4 /* AppDelegate.swift */,
+				F2B9D71725A4E0CD0007BFE4 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F2B9D75925A4E9890007BFE4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F2B9D71925A4E0CD0007BFE4 /* ViewController.swift */,
+				F2B9D71B25A4E0CD0007BFE4 /* Main.storyboard */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +301,7 @@
 				F2B9D71A25A4E0CD0007BFE4 /* ViewController.swift in Sources */,
 				F2B9D71625A4E0CD0007BFE4 /* AppDelegate.swift in Sources */,
 				F2B9D71825A4E0CD0007BFE4 /* SceneDelegate.swift in Sources */,
+				F21B94F125A4EC34004A6150 /* Provider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +479,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3398KH88X;
-				INFOPLIST_FILE = ThePopularMovies/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ThePopularMovies/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,7 +499,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3398KH88X;
-				INFOPLIST_FILE = ThePopularMovies/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ThePopularMovies/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
