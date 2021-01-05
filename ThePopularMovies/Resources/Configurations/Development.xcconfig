@@ -1,0 +1,17 @@
+//
+//  Development.xcconfig
+//  LeatherTv
+//
+//  Created by Yunus Tek on 11.07.2020.
+//  Copyright © 2020 Leather Tv. All rights reserved.
+//
+
+#include "Shared.xcconfig"
+
+// App Values
+DISPLAY_NAME = Leather Dev
+BUNDLE_IDENTIFIER = com.leather.tv.development
+
+// Configurations
+API_TIMEOUT_INTERVAL_FOR_REQUEST = 30
+FIREBASE_PLIST_NAME = GoogleService-Info_Development

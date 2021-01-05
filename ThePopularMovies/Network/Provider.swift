@@ -13,7 +13,7 @@ enum ResponseStatus<T> {
     case error(Error)
 }
 
-enum ServiceError : Error {
+enum ResponseError : Error {
 
     case unknown, badResponse, jsonDecoder, imageDownload, imageConvert
 }
@@ -39,12 +39,12 @@ extension Provider {
             }
 
             guard let response = response as? HTTPURLResponse, 200..<300 ~= response.statusCode else {
-                completion(.error(ServiceError.badResponse))
+                completion(.error(ResponseError.badResponse))
                 return
             }
 
             guard let value = try? JSONDecoder().decode([T].self, from: data!) else {
-                 completion(.error(ServiceError.jsonDecoder))
+                 completion(.error(ResponseError.jsonDecoder))
                 return
             }
 

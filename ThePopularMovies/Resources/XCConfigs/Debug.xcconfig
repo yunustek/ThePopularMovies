@@ -1,0 +1,15 @@
+//
+//  Debug.xcconfig
+//  ThePopularMovies
+//
+//  Created by Yunus Tek on 6.01.2021.
+//
+
+#include "Shared.xcconfig"
+
+// App Values
+DISPLAY_NAME = Popular Movies Debug
+BUNDLE_IDENTIFIER = com.yunustek.ThePopularMovies.debug
+
+// Configurations
+API_TIMEOUT_INTERVAL_FOR_REQUEST = 30

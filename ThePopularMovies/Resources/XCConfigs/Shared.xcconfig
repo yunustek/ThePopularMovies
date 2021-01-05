@@ -1,0 +1,15 @@
+//
+//  Shared.xcconfig
+//  ThePopularMovies
+//
+//  Created by Yunus Tek on 6.01.2021.
+//
+
+// App Values
+VERSION_NUMBER = 0.0.1
+BUILD_NUMBER = 1
+
+// Configurations
+API_BASE_URL = https:#api.themoviedb.org/3 // # is equal to //
+API_TIMEOUT_INTERVAL_FOR_REQUEST = 60
+ROOT_STORYBOARD_NAME = Splash

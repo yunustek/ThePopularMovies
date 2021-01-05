@@ -1,0 +1,15 @@
+//
+//  Release.xcconfig
+//  ThePopularMovies
+//
+//  Created by Yunus Tek on 6.01.2021.
+//
+
+#include "Shared.xcconfig"
+
+// App Values
+DISPLAY_NAME = Popular Movies
+BUNDLE_IDENTIFIER = com.yunustek.ThePopularMovies
+
+// Configurations
+API_TIMEOUT_INTERVAL_FOR_REQUEST = 60
