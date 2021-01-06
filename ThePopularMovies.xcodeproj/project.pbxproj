@@ -82,7 +82,7 @@
 		F21B962425A537AC004A6150 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		F21B962925A537ED004A6150 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
 		F21B964525A5E38D004A6150 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
-		F2B9D71225A4E0CD0007BFE4 /* ThePopularMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePopularMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2B9D71225A4E0CD0007BFE4 /* Popular Movies Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Popular Movies Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B9D71525A4E0CD0007BFE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2B9D71725A4E0CD0007BFE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F2B9D71925A4E0CD0007BFE4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -90,10 +90,10 @@
 		F2B9D71E25A4E0CE0007BFE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2B9D72125A4E0CE0007BFE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2B9D72325A4E0CE0007BFE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2B9D72825A4E0CF0007BFE4 /* ThePopularMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThePopularMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2B9D72825A4E0CF0007BFE4 /* Popular Movies DebugTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Popular Movies DebugTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B9D72C25A4E0CF0007BFE4 /* ThePopularMoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThePopularMoviesTests.swift; sourceTree = "<group>"; };
 		F2B9D72E25A4E0CF0007BFE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2B9D73325A4E0CF0007BFE4 /* ThePopularMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThePopularMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2B9D73325A4E0CF0007BFE4 /* Popular Movies DebugUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Popular Movies DebugUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B9D73725A4E0CF0007BFE4 /* ThePopularMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThePopularMoviesUITests.swift; sourceTree = "<group>"; };
 		F2B9D73925A4E0CF0007BFE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -271,9 +271,9 @@
 		F2B9D71325A4E0CD0007BFE4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2B9D71225A4E0CD0007BFE4 /* ThePopularMovies.app */,
-				F2B9D72825A4E0CF0007BFE4 /* ThePopularMoviesTests.xctest */,
-				F2B9D73325A4E0CF0007BFE4 /* ThePopularMoviesUITests.xctest */,
+				F2B9D71225A4E0CD0007BFE4 /* Popular Movies Debug.app */,
+				F2B9D72825A4E0CF0007BFE4 /* Popular Movies DebugTests.xctest */,
+				F2B9D73325A4E0CF0007BFE4 /* Popular Movies DebugUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -345,7 +345,7 @@
 			);
 			name = ThePopularMovies;
 			productName = ThePopularMovies;
-			productReference = F2B9D71225A4E0CD0007BFE4 /* ThePopularMovies.app */;
+			productReference = F2B9D71225A4E0CD0007BFE4 /* Popular Movies Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F2B9D72725A4E0CF0007BFE4 /* ThePopularMoviesTests */ = {
@@ -363,7 +363,7 @@
 			);
 			name = ThePopularMoviesTests;
 			productName = ThePopularMoviesTests;
-			productReference = F2B9D72825A4E0CF0007BFE4 /* ThePopularMoviesTests.xctest */;
+			productReference = F2B9D72825A4E0CF0007BFE4 /* Popular Movies DebugTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F2B9D73225A4E0CF0007BFE4 /* ThePopularMoviesUITests */ = {
@@ -381,7 +381,7 @@
 			);
 			name = ThePopularMoviesUITests;
 			productName = ThePopularMoviesUITests;
-			productReference = F2B9D73325A4E0CF0007BFE4 /* ThePopularMoviesUITests.xctest */;
+			productReference = F2B9D73325A4E0CF0007BFE4 /* Popular Movies DebugUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -711,11 +711,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leather.tv.ThePopularMoviesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}Tests";
+				PRODUCT_NAME = "${DISPLAY_NAME}Tests";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThePopularMovies.app/ThePopularMovies";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/${DISPLAY_NAME}.app/${DISPLAY_NAME}";
 			};
 			name = Debug;
 		};
@@ -733,11 +733,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leather.tv.ThePopularMoviesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}Tests";
+				PRODUCT_NAME = "${DISPLAY_NAME}Tests";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThePopularMovies.app/ThePopularMovies";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/${DISPLAY_NAME}.app/${DISPLAY_NAME}";
 			};
 			name = Release;
 		};
@@ -754,7 +754,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leather.tv.ThePopularMoviesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "${DISPLAY_NAME}UITests";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ThePopularMovies;
@@ -774,7 +774,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leather.tv.ThePopularMoviesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "${DISPLAY_NAME}UITests";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ThePopularMovies;

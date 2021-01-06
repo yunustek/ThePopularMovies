@@ -6,9 +6,9 @@
 //
 
 import XCTest
-@testable import ThePopularMovies
+@testable import Popular_Movies_Debug
 
-class ServiceTests: XCTestCase {
+class ThePopularMoviesTests: XCTestCase {
 
     var provider: Provider?
 
@@ -43,6 +43,5 @@ class ServiceTests: XCTestCase {
 
         wait(for: [expect], timeout: 0.5)
     }
-
 }
 

@@ -8,8 +8,8 @@
 #include "Shared.xcconfig"
 
 // App Values
-DISPLAY_NAME = ThePopularMovies
-BUNDLE_IDENTIFIER = com.yunustek.ThePopularMovies.debug
+DISPLAY_NAME = Popular Movies Debug
+BUNDLE_IDENTIFIER = com.yunustek.ThePopularMovies
 
 // Configurations
 API_TIMEOUT_INTERVAL_FOR_REQUEST = 30
