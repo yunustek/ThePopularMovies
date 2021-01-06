@@ -82,7 +82,7 @@
 		F21B962425A537AC004A6150 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		F21B962925A537ED004A6150 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
 		F21B964525A5E38D004A6150 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
-		F2B9D71225A4E0CD0007BFE4 /* Popular Movies Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Popular Movies Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2B9D71225A4E0CD0007BFE4 /* ThePopularMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePopularMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B9D71525A4E0CD0007BFE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2B9D71725A4E0CD0007BFE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F2B9D71925A4E0CD0007BFE4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 		F2B9D71325A4E0CD0007BFE4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2B9D71225A4E0CD0007BFE4 /* Popular Movies Debug.app */,
+				F2B9D71225A4E0CD0007BFE4 /* ThePopularMovies.app */,
 				F2B9D72825A4E0CF0007BFE4 /* ThePopularMoviesTests.xctest */,
 				F2B9D73325A4E0CF0007BFE4 /* ThePopularMoviesUITests.xctest */,
 			);
@@ -345,7 +345,7 @@
 			);
 			name = ThePopularMovies;
 			productName = ThePopularMovies;
-			productReference = F2B9D71225A4E0CD0007BFE4 /* Popular Movies Debug.app */;
+			productReference = F2B9D71225A4E0CD0007BFE4 /* ThePopularMovies.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F2B9D72725A4E0CF0007BFE4 /* ThePopularMoviesTests */ = {

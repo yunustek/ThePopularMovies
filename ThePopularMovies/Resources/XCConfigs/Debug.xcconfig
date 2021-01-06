@@ -8,7 +8,7 @@
 #include "Shared.xcconfig"
 
 // App Values
-DISPLAY_NAME = Popular Movies Debug
+DISPLAY_NAME = ThePopularMovies
 BUNDLE_IDENTIFIER = com.yunustek.ThePopularMovies.debug
 
 // Configurations
