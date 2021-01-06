@@ -38,15 +38,15 @@ enum Configuration {
         }
     }
 
-    static var apiURL: URL {
+    static var apiURL: String {
 
         let content: String! = try! Configuration.value(for: "API_BASE_URL")
-        return URL(string: content.replaceXConfigCharacters)!
+        return content.replaceXConfigCharacters
     }
 
-    static var bundleID: String {
+    static var timeoutForRequest: TimeInterval {
 
-        let content: String! = try! Configuration.value(for: "BUNDLE_IDENTIFIER")
+        let content: TimeInterval! = try! Configuration.value(for: "API_TIMEOUT_INTERVAL_FOR_REQUEST")
         return content
     }
 }

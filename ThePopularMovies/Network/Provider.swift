@@ -2,56 +2,18 @@
 //  Provider.swift
 //  ThePopularMovies
 //
-//  Created by Yunus Tek on 5.01.2021.
+//  Created by Yunus Tek on 6.01.2021.
 //
 
 import Foundation
 
-enum ResponseStatus<T> {
+class Provider : ProviderProtocol {
 
-    case success(T)
-    case error(Error)
-}
+    static let baseUrl = Configuration.apiURL
 
-enum ResponseError : Error {
+    func fetchMovies(with endpoint: RequestAPI, successClosure: @escaping SuccessClosure<Movies>, errorClosure: ErrorClosure?) {
 
-    case unknown, badResponse, jsonDecoder, imageDownload, imageConvert
-}
-
-protocol Provider {
-
-    var session: URLSession { get }
-    func getFetch<T: Codable>(with request: URLRequest, completion: @escaping (ResponseStatus<[T]>) -> Void)
-}
-
-extension Provider {
-
-    var session : URLSession {
-        return URLSession.shared
-    }
-
-    func getFetch<T: Codable>(with request: URLRequest, completion: @escaping (ResponseStatus<[T]>) -> Void) {
-
-        let task = session.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                completion(.error(error!))
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse, 200..<300 ~= response.statusCode else {
-                completion(.error(ResponseError.badResponse))
-                return
-            }
-
-            guard let value = try? JSONDecoder().decode([T].self, from: data!) else {
-                 completion(.error(ResponseError.jsonDecoder))
-                return
-            }
-
-            DispatchQueue.main.async {
-                completion(.success(value))
-            }
-        }
-        task.resume()
+        let request = endpoint.request
+        fetch(with: request, successClosure: successClosure, errorClosure: errorClosure)
     }
 }
