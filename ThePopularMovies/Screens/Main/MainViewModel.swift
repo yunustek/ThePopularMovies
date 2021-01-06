@@ -7,13 +7,21 @@
 
 class MainViewModel: BaseViewModel {
 
+    // MARK: Variables
+
     var successFetch: (() -> ()) = {}
     var errorFetch: ((Error?) -> ()) = { _ in }
-    var errorClosure: ErrorClosure?
-
     var loaded: (()->())?
 
-    var isLoaded: Bool = false {
+    // MARK: Privates
+
+    private(set) var movies: [Movie]! {
+        didSet {
+            self.successFetch()
+        }
+    }
+    private(set) var errorClosure: ErrorClosure?
+    private(set) var isLoaded: Bool = false {
         didSet {
             if isLoaded {
                 loaded?()
@@ -21,11 +29,7 @@ class MainViewModel: BaseViewModel {
         }
     }
 
-    private(set) var movies: [Movie]! {
-        didSet {
-            self.successFetch()
-        }
-    }
+    // MARK: Initializations
 
     override init(provider: ProviderProtocol) {
 
