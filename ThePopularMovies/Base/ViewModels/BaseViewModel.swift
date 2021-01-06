@@ -5,11 +5,15 @@
 //  Created by Yunus Tek on 6.01.2021.
 //
 
-import Foundation
+import UIKit
 
-class BaseViewModel: NSObject {
+class BaseViewModel: NSObject, BaseController {
 
     let provider: ProviderProtocol
+
+    var localStorage: LocalStorageProtocol! {
+        return LocalStorage(userDefaults: UserDefaults.standard)
+    }
 
     init(provider: ProviderProtocol) {
 

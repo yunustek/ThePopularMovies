@@ -23,6 +23,5 @@ class BaseViewController: UIViewController {
 
     func applyStyling() {
 
-        view.backgroundColor = .clear
     }
 }

@@ -55,9 +55,9 @@ class MainViewController: BaseViewController {
         }
 
         viewModel.errorFetch = { [weak self] error in
-            guard let self = self else { return }
+            guard let _ = self else { return }
 
-            print("Error fetch!!", error?.localizedDescription)
+            print("Error fetch!!", error?.localizedDescription ?? "")
         }
 
         viewModel.fetchMovies(pageNo: 1)

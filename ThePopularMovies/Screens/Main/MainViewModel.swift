@@ -59,9 +59,14 @@ class MainViewModel: BaseViewModel {
 
         var viewModels: [MovieCellViewModel] = []
 
-        for movie in movies {
+        // TODO: Yunus - save local storage if added to favorite
+        let movieFavorites = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self) as? [Movie]
+
+        for (index, movie) in movies.enumerated() {
+
             viewModels.append(
-                MovieCellViewModel()
+                MovieCellViewModel(title: movie.title,
+                                   isFavorite: movieFavorites?[index].isFavorite ?? false)
             )
         }
 

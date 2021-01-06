@@ -9,23 +9,14 @@ import Foundation
 
 final class MovieCellViewModel: BaseCellViewModel {
 
-//    let audioClips: BehaviorRelay<[(startMS: Double?, durationMS: Double?)]>?
-//    var type: BroadcasterType?
-//
-//    init(broadcasterViewModel: BroadcasterViewModel,
-//         audioClips: BehaviorRelay<[(startMS: Double?, durationMS: Double?)]>? = nil) {
-//
-//        self.audioClips = audioClips
-//        self.type = nil // its adding in broadcasterlistview initialization
-//        super.init(trackId: broadcasterViewModel.trackId,
-//                   audioId: broadcasterViewModel.audioId,
-//                   audioUrlString: broadcasterViewModel.audioUrlString,
-//                   name: broadcasterViewModel.name,
-//                   twitterName: broadcasterViewModel.username,
-//                   isVerified: broadcasterViewModel.isVerified,
-//                   avatarURL: broadcasterViewModel.avatarURL,
-//                   closed: broadcasterViewModel.closed)
-//    }
+    let title: String?
+    let isFavorite: Bool
+
+    init(title: String?, isFavorite: Bool) {
+
+        self.title = title
+        self.isFavorite = isFavorite
+    }
 }
 
 // BaseCellDataProtocol

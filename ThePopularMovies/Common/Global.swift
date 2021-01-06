@@ -9,6 +9,11 @@ import Foundation
 
 public enum Global {
 
+    enum LocalStorage {
+
+        static let movieFavorites = "MovieFavorites"
+    }
+
     enum Storyboard {
 
         enum Main {

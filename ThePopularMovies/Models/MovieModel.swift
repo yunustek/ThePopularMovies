@@ -9,11 +9,14 @@ import Foundation
 
 struct Movie : Codable {
 
-    let id : Int?
-    let `description` : String?
-    let poster_path : String?
-    let title : String?
-    let vote_count : Int?
+    let id: Int?
+    let `description`: String?
+    let poster_path: String?
+    let title: String?
+    let vote_count: Int?
+
+    //
+    var isFavorite: Bool
 
     enum CodingKeys: String, CodingKey {
 
@@ -22,6 +25,7 @@ struct Movie : Codable {
         case poster_path = "poster_path"
         case title = "title"
         case vote_count = "vote_count"
+        case isFavorite = "isFavorite"
     }
 
     init(from decoder: Decoder) throws {
@@ -31,5 +35,6 @@ struct Movie : Codable {
         poster_path = try values.decodeIfPresent(String.self, forKey: .poster_path)
         title = try values.decodeIfPresent(String.self, forKey: .title)
         vote_count = try values.decodeIfPresent(Int.self, forKey: .vote_count)
+        isFavorite = try values.decodeIfPresent(Bool.self, forKey: .isFavorite) ?? false
     }
 }
