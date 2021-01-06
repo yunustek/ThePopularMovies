@@ -33,7 +33,7 @@ final class MovieCell: BaseCollectionViewCell {
     override func prepareForReuse() {
 
         super.prepareForReuse()
-
+        
     }
 
     override func bind(to viewModel: BaseCellViewModel) {

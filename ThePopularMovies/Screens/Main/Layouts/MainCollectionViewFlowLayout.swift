@@ -21,9 +21,9 @@ class MainCollectionViewFlowLayout : UICollectionViewFlowLayout {
         return collectionView?.frame.width ?? 0
     }
 
-    var mode : DisplayMode = .grid {
+    var displayMode: DisplayMode = .grid {
         didSet {
-            if mode != oldValue {
+            if displayMode != oldValue {
                 self.invalidateLayout()
             }
         }
@@ -34,7 +34,7 @@ class MainCollectionViewFlowLayout : UICollectionViewFlowLayout {
     convenience init(displayMode: DisplayMode) {
         self.init()
 
-        self.mode = displayMode
+        self.displayMode = displayMode
         self.minimumLineSpacing = 10
         self.minimumInteritemSpacing = 10
         self.configureDisplayMode()
@@ -42,17 +42,18 @@ class MainCollectionViewFlowLayout : UICollectionViewFlowLayout {
 
     func configureDisplayMode() {
 
-        guard let collectionView = collectionView else { return }
+        guard let _ = collectionView else { return }
+        
         scrollDirection = .vertical
 
-        switch mode {
+        switch displayMode {
         case .list:
 
-            itemSize = CGSize(width: collectionView.frame.width , height: 130)
+            itemSize = CGSize(width: width , height: width / 2)
         case .grid:
 
             let newWidth = (width - (minimumInteritemSpacing + sectionInset.left + sectionInset.right)) / 2
-            itemSize = CGSize(width: newWidth , height: newWidth)
+            itemSize = CGSize(width: newWidth , height: newWidth * 1.5)
         }
     }
 

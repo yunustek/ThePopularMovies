@@ -25,6 +25,8 @@ class MainViewController: BaseViewController {
 
     // MARKS: Variables
     var viewModel = MainViewModel(provider: Provider())
+    let collectionViewLayout = MainCollectionViewFlowLayout()
+    var changeDisplayModeButton: UIBarButtonItem!
 
     override func viewDidLoad() {
 
@@ -33,6 +35,7 @@ class MainViewController: BaseViewController {
         configureCollectionView()
         configureCollectionViewLayout()
         registerCollectionViewCells()
+        configureNavigationButtons()
     }
 
     override func bindViewModel() {
@@ -42,6 +45,7 @@ class MainViewController: BaseViewController {
         viewModel.successFetch = { [weak self] in
             guard let self = self else { return }
 
+            self.collectionView.dataSource = self.viewModel.dataSource
             self.collectionView.reloadData()
         }
 
@@ -53,15 +57,37 @@ class MainViewController: BaseViewController {
         viewModel.errorFetch = { [weak self] error in
             guard let self = self else { return }
 
-            print("ERROR FETCH!!", error?.localizedDescription)
+            print("Error fetch!!", error?.localizedDescription)
         }
 
-        viewModel.fetchMovies(pageNo: 2)
+        viewModel.fetchMovies(pageNo: 1)
     }
 
     override func applyStyling() {
 
         super.applyStyling()
+
+        navigationItem.title = "Contents"
+    }
+
+    private func configureNavigationButtons() {
+
+        changeDisplayModeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "iconGrid.png"), style: .plain, target: self, action: #selector(changeDisplayMode))
+
+        navigationItem.rightBarButtonItem = changeDisplayModeButton
+    }
+
+    @objc func changeDisplayMode() {
+
+        if collectionViewLayout.displayMode == .list {
+
+            collectionViewLayout.displayMode = .grid
+            changeDisplayModeButton.image = #imageLiteral(resourceName: "iconList.png")
+        } else {
+
+            collectionViewLayout.displayMode = .list
+            changeDisplayModeButton.image = #imageLiteral(resourceName: "iconGrid.png")
+        }
     }
 
     private func configureCollectionView() {
@@ -74,15 +100,15 @@ class MainViewController: BaseViewController {
 
     private func configureCollectionViewLayout() {
 
-        let layout = MainCollectionViewFlowLayout(displayMode: .list)
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = Constant.CollectionView.minimumLineSpacing
-        layout.minimumInteritemSpacing = Constant.CollectionView.minimumInteritemSpacing
-        layout.footerReferenceSize = .zero
-        layout.headerReferenceSize = .zero
-        layout.itemSize = UIScreen.main.bounds.size
-        layout.sectionInset = Constant.CollectionView.sectionInset
-        collectionView.collectionViewLayout = layout
+        collectionViewLayout.displayMode = .list
+        collectionViewLayout.scrollDirection = .vertical
+        collectionViewLayout.minimumLineSpacing = Constant.CollectionView.minimumLineSpacing
+        collectionViewLayout.minimumInteritemSpacing = Constant.CollectionView.minimumInteritemSpacing
+        collectionViewLayout.footerReferenceSize = .zero
+        collectionViewLayout.headerReferenceSize = .zero
+        collectionViewLayout.itemSize = UIScreen.main.bounds.size
+        collectionViewLayout.sectionInset = Constant.CollectionView.sectionInset
+        collectionView.collectionViewLayout = collectionViewLayout
     }
 
     private func registerCollectionViewCells() {

@@ -5,6 +5,8 @@
 //  Created by Yunus Tek on 6.01.2021.
 //
 
+import UIKit
+
 class MainViewModel: BaseViewModel {
 
     // MARK: Variables
@@ -15,7 +17,7 @@ class MainViewModel: BaseViewModel {
 
     // MARK: Privates
 
-    private(set) var movies: [Movie]! {
+    private(set) var dataSource: MainCollectionViewDataSource<MovieCell, MovieCellViewModel>! {
         didSet {
             self.successFetch()
         }
@@ -48,8 +50,21 @@ class MainViewModel: BaseViewModel {
         provider.fetchMovies(with: .movies(pageNo: pageNo), successClosure: { [weak self] movies in
             guard let self = self, let movies = movies?.results else { return }
 
-            self.movies = movies
+            self.createCellViewModels(movies)
             self.isLoaded = true
         }, errorClosure: errorClosure)
    }
+
+    private func createCellViewModels(_ movies: [Movie]) {
+
+        var viewModels: [MovieCellViewModel] = []
+
+        for movie in movies {
+            viewModels.append(
+                MovieCellViewModel()
+            )
+        }
+
+        dataSource = MainCollectionViewDataSource(items: viewModels)
+    }
 }
