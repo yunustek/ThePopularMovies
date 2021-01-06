@@ -37,6 +37,7 @@
 		F2B9D72225A4E0CE0007BFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B9D72025A4E0CE0007BFE4 /* LaunchScreen.storyboard */; };
 		F2B9D72D25A4E0CF0007BFE4 /* ThePopularMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D72C25A4E0CF0007BFE4 /* ThePopularMoviesTests.swift */; };
 		F2B9D73825A4E0CF0007BFE4 /* ThePopularMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D73725A4E0CF0007BFE4 /* ThePopularMoviesUITests.swift */; };
+		F2EBB21D25A616E40092F2BC /* MainCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EBB21C25A616E40092F2BC /* MainCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		F2B9D73325A4E0CF0007BFE4 /* Popular Movies DebugUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Popular Movies DebugUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B9D73725A4E0CF0007BFE4 /* ThePopularMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThePopularMoviesUITests.swift; sourceTree = "<group>"; };
 		F2B9D73925A4E0CF0007BFE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2EBB21C25A616E40092F2BC /* MainCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 		F21B95FC25A53252004A6150 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F2EBB21B25A616D10092F2BC /* Layouts */,
 				F21B962325A53797004A6150 /* Cells */,
 				F2B9D71925A4E0CD0007BFE4 /* MainViewController.swift */,
 				F21B960325A532A6004A6150 /* MainViewModel.swift */,
@@ -326,6 +329,14 @@
 				F21B95FC25A53252004A6150 /* Main */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		F2EBB21B25A616D10092F2BC /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				F2EBB21C25A616E40092F2BC /* MainCollectionViewFlowLayout.swift */,
+			);
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,6 +482,7 @@
 				F2B9D71A25A4E0CD0007BFE4 /* MainViewController.swift in Sources */,
 				F21B95C225A52D94004A6150 /* BaseViewController.swift in Sources */,
 				F21B950525A5137C004A6150 /* Configuration.swift in Sources */,
+				F2EBB21D25A616E40092F2BC /* MainCollectionViewFlowLayout.swift in Sources */,
 				F21B95F825A531E9004A6150 /* BaseCollectionViewCell.swift in Sources */,
 				F2B9D71625A4E0CD0007BFE4 /* AppDelegate.swift in Sources */,
 				F21B960425A532A7004A6150 /* MainViewModel.swift in Sources */,

@@ -74,15 +74,15 @@ class MainViewController: BaseViewController {
 
     private func configureCollectionViewLayout() {
 
-        let collectionViewlayout = UICollectionViewFlowLayout()
-        collectionViewlayout.scrollDirection = .vertical
-        collectionViewlayout.minimumLineSpacing = Constant.CollectionView.minimumLineSpacing
-        collectionViewlayout.minimumInteritemSpacing = Constant.CollectionView.minimumInteritemSpacing
-        collectionViewlayout.footerReferenceSize = .zero
-        collectionViewlayout.headerReferenceSize = .zero
-        collectionViewlayout.itemSize = UIScreen.main.bounds.size
-        collectionViewlayout.sectionInset = Constant.CollectionView.sectionInset
-        collectionView.collectionViewLayout = collectionViewlayout
+        let layout = MainCollectionViewFlowLayout(displayMode: .list)
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = Constant.CollectionView.minimumLineSpacing
+        layout.minimumInteritemSpacing = Constant.CollectionView.minimumInteritemSpacing
+        layout.footerReferenceSize = .zero
+        layout.headerReferenceSize = .zero
+        layout.itemSize = UIScreen.main.bounds.size
+        layout.sectionInset = Constant.CollectionView.sectionInset
+        collectionView.collectionViewLayout = layout
     }
 
     private func registerCollectionViewCells() {
