@@ -17,9 +17,10 @@ class MainViewModel: BaseViewModel {
 
     // MARK: Privates
 
+    var items: [Movie] = []
     private(set) var dataSource: MainCollectionViewDataSource<MovieCell, MovieCellViewModel>! {
         didSet {
-            self.successFetch()
+            successFetch()
         }
     }
     private(set) var errorClosure: ErrorClosure?
@@ -47,29 +48,69 @@ class MainViewModel: BaseViewModel {
 
     func fetchMovies(pageNo: Int) {
 
+        isLoaded = false
         provider.fetchMovies(with: .movies(pageNo: pageNo), successClosure: { [weak self] movies in
             guard let self = self, let movies = movies?.results else { return }
 
-            self.createCellViewModels(movies)
+            var itemsViewModels = self.createCellViewModels(movies)
+
+            if var items = self.dataSource?.items {
+                items.append(contentsOf: itemsViewModels)
+                itemsViewModels = items
+            }
+
+            self.items = movies
+            self.dataSource = MainCollectionViewDataSource(items: itemsViewModels)
             self.isLoaded = true
         }, errorClosure: errorClosure)
    }
 
-    private func createCellViewModels(_ movies: [Movie]) {
+    func createCellViewModels(_ movies: [Movie]) -> [MovieCellViewModel] {
 
         var viewModels: [MovieCellViewModel] = []
 
-        // TODO: Yunus - save local storage if added to favorite
-        let movieFavorites = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self) as? [Movie]
+        let movieFavorites = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self) ?? movies
 
         for (index, movie) in movies.enumerated() {
 
+            guard let id = movie.id else { continue }
+
             viewModels.append(
-                MovieCellViewModel(title: movie.title,
-                                   isFavorite: movieFavorites?[index].isFavorite ?? false)
+                MovieCellViewModel(movieId: id,
+                                   title: movie.title,
+                                   imageURL: movie.poster_path,
+                                   isFavorite: movieFavorites[index].isFavorite)
             )
         }
 
-        dataSource = MainCollectionViewDataSource(items: viewModels)
+        localStorage.setObject(codableObject: movieFavorites, forKey: Global.LocalStorage.movieFavorites)
+
+        return viewModels
+    }
+
+    func reloadLocalDatas() {
+
+        if let movies = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self),
+           !movies.elementsEqual(items) {
+
+            self.items = movies
+            self.dataSource = MainCollectionViewDataSource(items: self.createCellViewModels(movies))
+        }
+
+
+    }
+}
+
+extension MainViewModel: MovieCellDelegate {
+
+    func addToFavoriteButtonTapped(movieId: Int, isFavorite: Bool, success: () -> ()) {
+
+        guard var movies = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self),
+              let index = movies.firstIndex(where: { $0.id == movieId }) else { return }
+
+        movies[index].isFavorite = isFavorite
+
+        localStorage.setObject(codableObject: movies, forKey: Global.LocalStorage.movieFavorites)
+        success()
     }
 }

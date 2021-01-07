@@ -14,10 +14,9 @@ public enum Global {
         static let movieFavorites = "MovieFavorites"
     }
 
-    enum Storyboard {
+    enum Storyboard: String {
 
-        enum Main {
-            static let name = "Main"
-        }
+        case main = "Main"
+        case movieDetail = "MovieDetail"
     }
 }

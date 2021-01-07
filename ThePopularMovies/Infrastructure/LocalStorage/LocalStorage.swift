@@ -10,7 +10,7 @@ import UIKit
 final public class LocalStorage: NSObject, LocalStorageProtocol {
 
     private var userDefaults: UserDefaults?
-    private let prefix: String! = try! Configuration.value(for: "LOCAL_STORAGE_PREFIX")
+    private let prefix: String! = try! Configuration.value(for: "BUNDLE_IDENTIFIER")
 
     // MARK: Initializations
 
@@ -21,11 +21,14 @@ final public class LocalStorage: NSObject, LocalStorageProtocol {
 
     // MARK: Getter Methods
 
-    func object<T: Decodable>(forKey key: Any, object: T.Type) -> Any? {
-        if let data = userDefaults?.object(forKey: reformKey(key as? String)) as? Data {
+    func object<T: Decodable>(forKey key: Any, object: T.Type) -> T? {
+
+        let reKey = reformKey(key as? String)
+
+        if let data = userDefaults?.object(forKey: reKey) as? Data {
             return try? PropertyListDecoder() .decode(T.self, from: data)
         }
-        return userDefaults?.object(forKey: reformKey(key as? String))
+        return userDefaults?.object(forKey: reKey) as? T
     }
 
     func string(forKey key: String) -> String? {
@@ -40,30 +43,30 @@ final public class LocalStorage: NSObject, LocalStorageProtocol {
 
     func setObject<T>(codableObject: T?, forKey key: String?) where T: Codable {
         userDefaults?.set(try? PropertyListEncoder().encode(codableObject), forKey: reformKey(key))
-        self.synchronize()
+        synchronize()
     }
 
     func setObject(_ object: Any?, forKey key: String?) {
         userDefaults?.set(object, forKey: reformKey(key))
-        self.synchronize()
+        synchronize()
     }
 
     func store(_ value: String?, forKey key: String?) {
         userDefaults?.set(value, forKey: reformKey(key))
-        self.synchronize()
+        synchronize()
     }
 
     // MARK: Accessor Methods
 
     func removeObject(forKey key: String) {
         userDefaults?.removeObject(forKey: reformKey(key))
-        self.synchronize()
+        synchronize()
     }
 
     // MARK: Privates
 
     private func reformKey(_ key: String?) -> String {
-        return self.prefix + (key ?? "")
+        return "\(prefix ?? "")_\(key ?? "")"
     }
 
     private func synchronize() {

@@ -5,11 +5,12 @@
 //  Created by Yunus Tek on 6.01.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol Endpoint {
 
     var baseUrl : String { get }
+    var baseImageUrl : String { get }
     var path: String { get }
     var parameters: [URLQueryItem] { get }
     var auth: [URLQueryItem] { get }
@@ -17,29 +18,67 @@ protocol Endpoint {
 
 extension Endpoint {
 
-    var urlComponent : URLComponents {
+    var urlComponent: URLComponents {
 
         var urlComponent = URLComponents(string: baseUrl)
         urlComponent?.path.append(path)
 
-        urlComponent?.queryItems = []
-        urlComponent?.queryItems?.append(contentsOf: auth)
-        urlComponent?.queryItems?.append(contentsOf: parameters)
+        parameters.forEach { item in
+
+            if urlComponent?.queryItems == nil {
+                urlComponent?.queryItems = []
+            }
+
+            urlComponent?.queryItems?.append(item)
+        }
+
+        auth.forEach { item in
+
+            if urlComponent?.queryItems == nil {
+                urlComponent?.queryItems = []
+            }
+
+            urlComponent?.queryItems?.append(item)
+        }
 
         return urlComponent!
     }
 
-    var request: URLRequest {
+    var imageUrlComponent: URLComponents {
 
-        debugPrint("Fetching \(urlComponent.queryItems ?? []) fetching on \(type(of: self))")
+        var urlComponent = URLComponents(string: baseImageUrl)
+        urlComponent?.path.append(path)
+
+        parameters.forEach { item in
+
+            if urlComponent?.queryItems == nil {
+                urlComponent?.queryItems = []
+            }
+
+            urlComponent?.queryItems?.append(item)
+        }
+
+        return urlComponent!
+    }
+
+    var requestApi: URLRequest {
+
+        debugPrint("Fetching \(String(describing: urlComponent.url?.absoluteString))")
         return URLRequest(url: urlComponent.url!)
+    }
+
+    var requestImage: URLRequest {
+
+        debugPrint("Fetching \(String(describing: imageUrlComponent.url?.absoluteString))")
+        return URLRequest(url: imageUrlComponent.url!)
     }
 }
 
 enum RequestAPI : Endpoint {
 
     case movies(pageNo: Int)
-    case movie(movieId: String)
+    case movie(movieId: Int)
+    case image(imageId: String, widthSize: Int)
 }
 
 extension RequestAPI {
@@ -49,6 +88,11 @@ extension RequestAPI {
         return Configuration.apiURL
     }
 
+    var baseImageUrl: String {
+
+        return Configuration.baseImageUrl
+    }
+
     var path : String {
 
         switch self {
@@ -56,6 +100,8 @@ extension RequestAPI {
             return "/movie/popular"
         case .movie(let movieId):
             return "/movie/\(movieId)"
+        case .image(let imageId, let widthSize):
+            return "w\(widthSize)/\(imageId)"
         }
     }
 
@@ -65,6 +111,8 @@ extension RequestAPI {
         case .movies(let pageNo):
             return [ URLQueryItem(name: "page", value: String(pageNo) ) ]
         case .movie:
+            return []
+        case .image:
             return []
         }
     }

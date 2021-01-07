@@ -27,6 +27,7 @@ class MainViewController: BaseViewController {
     var viewModel = MainViewModel(provider: Provider())
     let collectionViewLayout = MainCollectionViewFlowLayout()
     var changeDisplayModeButton: UIBarButtonItem!
+    var itemPageNumber = 1
 
     override func viewDidLoad() {
 
@@ -38,6 +39,12 @@ class MainViewController: BaseViewController {
         configureNavigationButtons()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        viewModel.reloadLocalDatas()
+    }
+
     override func bindViewModel() {
 
         super.bindViewModel()
@@ -45,8 +52,7 @@ class MainViewController: BaseViewController {
         viewModel.successFetch = { [weak self] in
             guard let self = self else { return }
 
-            self.collectionView.dataSource = self.viewModel.dataSource
-            self.collectionView.reloadData()
+            self.reloadData()
         }
 
         viewModel.loaded = {
@@ -60,7 +66,7 @@ class MainViewController: BaseViewController {
             print("Error fetch!!", error?.localizedDescription ?? "")
         }
 
-        viewModel.fetchMovies(pageNo: 1)
+        viewModel.fetchMovies(pageNo: itemPageNumber)
     }
 
     override func applyStyling() {
@@ -68,6 +74,12 @@ class MainViewController: BaseViewController {
         super.applyStyling()
 
         navigationItem.title = "Contents"
+    }
+
+    private func reloadData() {
+
+        self.collectionView.dataSource = viewModel.dataSource
+        self.collectionView.reloadData()
     }
 
     private func configureNavigationButtons() {
@@ -92,6 +104,7 @@ class MainViewController: BaseViewController {
 
     private func configureCollectionView() {
 
+        collectionView.delegate = self
         collectionView.isScrollEnabled = true
         collectionView.isPagingEnabled = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -117,9 +130,34 @@ class MainViewController: BaseViewController {
     }
 }
 
+extension MainViewController: UICollectionViewDelegate, UIScrollViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let viewController = MovieDetailController.instantiate()
+
+        let item = viewModel.dataSource.items[indexPath.item]
+        viewController.viewModel = MovieDetailViewModel(provider: Provider(),
+                                                        movieId: item.movieId,
+                                                        isFavorite: item.isFavorite)
+
+        self.push(viewController)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+        let lastElement = viewModel.dataSource.items.count - 1
+        if viewModel.isLoaded, indexPath.item == lastElement {
+
+            itemPageNumber += 1
+            viewModel.fetchMovies(pageNo: itemPageNumber)
+        }
+    }
+}
+
 // MARK: - StoryboardProtocol
 
 extension MainViewController: StoryboardProtocol {
 
-    static var storyboardName: String = Global.Storyboard.Main.name
+    static var storyboardName: String = Global.Storyboard.main.rawValue
 }

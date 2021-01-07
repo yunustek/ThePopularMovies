@@ -16,7 +16,7 @@ protocol LocalStorageProtocol: NSObjectProtocol {
     * @param key     key to get its value
     * @return Object value if found
     */
-    func object<T: Decodable>(forKey key: Any, object: T.Type) -> Any?
+    func object<T: Decodable>(forKey key: Any, object: T.Type) -> T?
 
     /**
     * Get an string with key from LocalStorage

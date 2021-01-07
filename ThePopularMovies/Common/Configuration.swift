@@ -44,6 +44,12 @@ enum Configuration {
         return content.replaceXConfigCharacters
     }
 
+    static var baseImageUrl: String {
+
+        let content: String! = try! Configuration.value(for: "IMAGE_BASE_URL")
+        return content.replaceXConfigCharacters
+    }
+
     static var timeoutForRequest: TimeInterval {
 
         let content: TimeInterval! = try! Configuration.value(for: "API_TIMEOUT_INTERVAL_FOR_REQUEST")

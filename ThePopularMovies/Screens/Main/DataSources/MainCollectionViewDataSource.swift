@@ -7,12 +7,12 @@
 
 import UIKit
 
-class MainCollectionViewDataSource<Cell: BaseCollectionViewCell, T>: NSObject, UICollectionViewDataSource {
+class MainCollectionViewDataSource<Cell: MovieCell, T>: NSObject, UICollectionViewDataSource {
 
-    private var items: [BaseCellViewModel]!
-    var configureCell: ((BaseCollectionViewCell, BaseCellViewModel) -> ())? = { _,_ in }
+    var items: [MovieCellViewModel]!
+    var configureCell: ((MovieCell, MovieCellViewModel) -> ())? = { _,_ in }
 
-    init(items : [BaseCellViewModel], configureCell: ((BaseCollectionViewCell, BaseCellViewModel) -> ())? = nil) {
+    init(items : [MovieCellViewModel], configureCell: ((MovieCell, MovieCellViewModel) -> ())? = nil) {
         self.items =  items
         self.configureCell = configureCell
     }

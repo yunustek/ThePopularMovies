@@ -33,6 +33,10 @@
 		F22F8C9525A645E200AB352C /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8C9425A645E200AB352C /* BaseController.swift */; };
 		F22F8CA425A646A900AB352C /* LocalStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8CA325A646A900AB352C /* LocalStorageProtocol.swift */; };
 		F22F8CAE25A6475400AB352C /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8CAD25A6475400AB352C /* LocalStorage.swift */; };
+		F22F8CCA25A66E6200AB352C /* MovieCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8CC925A66E6200AB352C /* MovieCellDelegate.swift */; };
+		F22F8CDE25A6A1CB00AB352C /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8CDD25A6A1CB00AB352C /* MovieDetailViewController.swift */; };
+		F22F8CE625A6A1DB00AB352C /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8CE525A6A1DB00AB352C /* MovieDetailViewModel.swift */; };
+		F22F8CEB25A6A1E600AB352C /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F22F8CEA25A6A1E600AB352C /* MovieDetail.storyboard */; };
 		F2B9D71625A4E0CD0007BFE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D71525A4E0CD0007BFE4 /* AppDelegate.swift */; };
 		F2B9D71825A4E0CD0007BFE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D71725A4E0CD0007BFE4 /* SceneDelegate.swift */; };
 		F2B9D71A25A4E0CD0007BFE4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D71925A4E0CD0007BFE4 /* MainViewController.swift */; };
@@ -92,6 +96,10 @@
 		F22F8C9425A645E200AB352C /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		F22F8CA325A646A900AB352C /* LocalStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageProtocol.swift; sourceTree = "<group>"; };
 		F22F8CAD25A6475400AB352C /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		F22F8CC925A66E6200AB352C /* MovieCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellDelegate.swift; sourceTree = "<group>"; };
+		F22F8CDD25A6A1CB00AB352C /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		F22F8CE525A6A1DB00AB352C /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		F22F8CEA25A6A1E600AB352C /* MovieDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieDetail.storyboard; sourceTree = "<group>"; };
 		F2B9D71225A4E0CD0007BFE4 /* Popular Movies Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Popular Movies Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B9D71525A4E0CD0007BFE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2B9D71725A4E0CD0007BFE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -254,9 +262,10 @@
 		F21B95FC25A53252004A6150 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				F2EBB22525A61CF30092F2BC /* DataSources */,
 				F21B962325A53797004A6150 /* Cells */,
+				F2EBB22525A61CF30092F2BC /* DataSources */,
 				F2EBB21B25A616D10092F2BC /* Layouts */,
+				F22F8CC825A66E4500AB352C /* Protocols */,
 				F2B9D71925A4E0CD0007BFE4 /* MainViewController.swift */,
 				F21B960325A532A6004A6150 /* MainViewModel.swift */,
 				F2B9D71B25A4E0CD0007BFE4 /* Main.storyboard */,
@@ -297,6 +306,24 @@
 				F22F8CAD25A6475400AB352C /* LocalStorage.swift */,
 			);
 			path = LocalStorage;
+			sourceTree = "<group>";
+		};
+		F22F8CC825A66E4500AB352C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F22F8CC925A66E6200AB352C /* MovieCellDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F22F8CDC25A6A1B700AB352C /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F22F8CDD25A6A1CB00AB352C /* MovieDetailViewController.swift */,
+				F22F8CE525A6A1DB00AB352C /* MovieDetailViewModel.swift */,
+				F22F8CEA25A6A1E600AB352C /* MovieDetail.storyboard */,
+			);
+			path = MovieDetail;
 			sourceTree = "<group>";
 		};
 		F2B9D70925A4E0CD0007BFE4 = {
@@ -365,6 +392,7 @@
 		F2B9D75925A4E9890007BFE4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F22F8CDC25A6A1B700AB352C /* MovieDetail */,
 				F21B95FC25A53252004A6150 /* Main */,
 			);
 			path = Screens;
@@ -493,6 +521,7 @@
 				F2B9D71F25A4E0CE0007BFE4 /* Assets.xcassets in Resources */,
 				F22F8C2B25A63BA600AB352C /* MovieCell.xib in Resources */,
 				F2B9D71D25A4E0CD0007BFE4 /* Main.storyboard in Resources */,
+				F22F8CEB25A6A1E600AB352C /* MovieDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +565,8 @@
 				F21B95F825A531E9004A6150 /* BaseCollectionViewCell.swift in Sources */,
 				F22F8CA425A646A900AB352C /* LocalStorageProtocol.swift in Sources */,
 				F2B9D71625A4E0CD0007BFE4 /* AppDelegate.swift in Sources */,
+				F22F8CDE25A6A1CB00AB352C /* MovieDetailViewController.swift in Sources */,
+				F22F8CE625A6A1DB00AB352C /* MovieDetailViewModel.swift in Sources */,
 				F22F8CAE25A6475400AB352C /* LocalStorage.swift in Sources */,
 				F21B960425A532A7004A6150 /* MainViewModel.swift in Sources */,
 				F21B95F225A53190004A6150 /* ReuseProtocol.swift in Sources */,
@@ -546,6 +577,7 @@
 				F21B961225A53444004A6150 /* StoryboardProtocol.swift in Sources */,
 				F21B964625A5E38D004A6150 /* MovieModel.swift in Sources */,
 				F21B94F125A4EC34004A6150 /* RequestProtocol.swift in Sources */,
+				F22F8CCA25A66E6200AB352C /* MovieCellDelegate.swift in Sources */,
 				F21B961725A53491004A6150 /* Global.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
