@@ -93,6 +93,11 @@ extension RequestAPI {
         return Configuration.baseImageUrl
     }
 
+    var apiKey: String {
+
+        return Configuration.apiKey
+    }
+
     var path : String {
 
         switch self {
@@ -119,7 +124,7 @@ extension RequestAPI {
 
     var auth: [URLQueryItem] {
 
-        return [URLQueryItem(name: "api_key", value: "fd2b04342048fa2d5f728561866ad52a" ),
+        return [URLQueryItem(name: "api_key", value: apiKey ),
                 URLQueryItem(name: "language", value: "en-US" )]
     }
 }

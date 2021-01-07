@@ -50,6 +50,12 @@ enum Configuration {
         return content.replaceXConfigCharacters
     }
 
+    static var apiKey: String {
+
+        let content: String! = try! Configuration.value(for: "API_AUTH_KEY")
+        return content
+    }
+
     static var timeoutForRequest: TimeInterval {
 
         let content: TimeInterval! = try! Configuration.value(for: "API_TIMEOUT_INTERVAL_FOR_REQUEST")
