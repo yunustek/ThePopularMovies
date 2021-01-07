@@ -77,14 +77,29 @@ class MovieDetailViewModel: BaseViewModel {
         }
     }
 
-    func addToFavorite(movieId: Int, isFavorite: Bool, success: () -> ()) {
+    func addToFavorite(movie: Movie?, isFavorite: Bool, success: () -> ()) {
 
-        guard var movies = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self),
-              let index = movies.firstIndex(where: { $0.id == movieId }) else { return }
+        guard let movie = movie else { return }
 
-        movies[index].isFavorite = isFavorite
+        if isFavorite {
+            var movies = localStorage.object(forKey: Global.LocalStorage.favoriteMovies, object: [Movie].self) ?? []
 
-        localStorage.setObject(codableObject: movies, forKey: Global.LocalStorage.movieFavorites)
+            if movies.firstIndex(where: { $0.id == movie.id }) == nil {
+
+                movies.append(movie)
+            }
+
+            localStorage.setObject(codableObject: movies, forKey: Global.LocalStorage.favoriteMovies)
+        } else {
+            guard var movies = localStorage.object(forKey: Global.LocalStorage.favoriteMovies, object: [Movie].self),
+                  let index = movies.firstIndex(where: { $0.id == movie.id }) else {
+                success()
+                return
+            }
+
+            movies.remove(at: index)
+            localStorage.setObject(codableObject: movies, forKey: Global.LocalStorage.favoriteMovies)
+        }
         success()
     }
 }

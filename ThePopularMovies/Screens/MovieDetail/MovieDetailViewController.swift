@@ -86,7 +86,7 @@ class MovieDetailController: BaseViewController {
 
     @objc func changeFavorite() {
 
-        viewModel.addToFavorite(movieId: viewModel.movieId, isFavorite: !viewModel.isFavorite) {
+        viewModel.addToFavorite(movie: viewModel.item, isFavorite: !viewModel.isFavorite) {
             
             viewModel.isFavorite = !viewModel.isFavorite
             if viewModel.isFavorite {

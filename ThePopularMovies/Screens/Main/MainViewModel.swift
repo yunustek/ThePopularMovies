@@ -54,13 +54,15 @@ class MainViewModel: BaseViewModel {
             guard let self = self, let movies = movies?.results else { return }
 
             var viewModels = self.createCellViewModels(movies)
+            var newItems = movies
 
             if var items = self.dataSource?.items {
                 items.append(contentsOf: viewModels)
                 viewModels = items
+                newItems.append(contentsOf: self.items)
             }
 
-            self.items = movies
+            self.items = newItems
             self.itemViewModels = viewModels
             self.dataSource = MainCollectionViewDataSource(items: viewModels)
             self.isLoaded = true
@@ -71,33 +73,43 @@ class MainViewModel: BaseViewModel {
 
         var viewModels: [MovieCellViewModel] = []
 
-        let movieFavorites = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self) ?? movies
+        let favoriteMovies = localStorage.object(forKey: Global.LocalStorage.favoriteMovies, object: [Movie].self) ?? []
 
-        for (index, movie) in movies.enumerated() {
+        for movie in movies {
 
             guard let id = movie.id else { continue }
+
+            let isFavorite = favoriteMovies.firstIndex(where: { $0.id == id }) != nil ? true : false
 
             viewModels.append(
                 MovieCellViewModel(movieId: id,
                                    title: movie.title,
                                    imageURL: movie.poster_path,
-                                   isFavorite: movieFavorites[index].isFavorite)
+                                   isFavorite: isFavorite)
             )
         }
-
-        localStorage.setObject(codableObject: movieFavorites, forKey: Global.LocalStorage.movieFavorites)
-
         self.itemViewModels = viewModels
         return viewModels
     }
 
     func reloadLocalDatas() {
 
-        if let movies = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self),
-           !movies.elementsEqual(items) {
+        if let movies = localStorage.object(forKey: Global.LocalStorage.favoriteMovies, object: [Movie].self) {
 
-            self.items = movies
-            self.dataSource = MainCollectionViewDataSource(items: self.createCellViewModels(movies))
+            var reloadItems = self.items.map { (movie) -> Movie in
+                var newMovie = movie
+                newMovie.isFavorite = false
+                return newMovie
+            }
+
+            movies.forEach { (item) in
+
+                if let index = self.items.firstIndex(where: { $0.id == item.id }) {
+                    reloadItems[index].isFavorite = true
+                }
+            }
+
+            dataSource = MainCollectionViewDataSource(items: createCellViewModels(reloadItems))
         }
     }
 }
@@ -106,12 +118,27 @@ extension MainViewModel: MovieCellDelegate {
 
     func addToFavoriteButtonTapped(movieId: Int, isFavorite: Bool, success: () -> ()) {
 
-        guard var movies = localStorage.object(forKey: Global.LocalStorage.movieFavorites, object: [Movie].self),
-              let index = movies.firstIndex(where: { $0.id == movieId }) else { return }
+        guard let movie = items.first(where: {$0.id == movieId}) else { return }
 
-        movies[index].isFavorite = isFavorite
+        if isFavorite {
+            var movies = localStorage.object(forKey: Global.LocalStorage.favoriteMovies, object: [Movie].self) ?? []
 
-        localStorage.setObject(codableObject: movies, forKey: Global.LocalStorage.movieFavorites)
+            if movies.firstIndex(where: { $0.id == movie.id }) == nil {
+
+                movies.append(movie)
+            }
+
+            localStorage.setObject(codableObject: movies, forKey: Global.LocalStorage.favoriteMovies)
+        } else {
+            guard var movies = localStorage.object(forKey: Global.LocalStorage.favoriteMovies, object: [Movie].self),
+                  let index = movies.firstIndex(where: { $0.id == movie.id }) else {
+                success()
+                return
+            }
+
+            movies.remove(at: index)
+            localStorage.setObject(codableObject: movies, forKey: Global.LocalStorage.favoriteMovies)
+        }
         success()
     }
 }

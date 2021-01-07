@@ -11,7 +11,7 @@ public enum Global {
 
     enum LocalStorage {
 
-        static let movieFavorites = "MovieFavorites"
+        static let favoriteMovies = "FavoriteMovies"
     }
 
     enum Storyboard: String {
