@@ -9,10 +9,14 @@ import Foundation
 
 public enum Global {
 
-    enum Storyboard {
+    enum LocalStorage {
 
-        enum Main {
-            static let name = "Main"
-        }
+        static let favoriteMovies = "FavoriteMovies"
+    }
+
+    enum Storyboard: String {
+
+        case main = "Main"
+        case movieDetail = "MovieDetail"
     }
 }
