@@ -87,6 +87,7 @@ class MainViewModel: BaseViewModel {
 
         localStorage.setObject(codableObject: movieFavorites, forKey: Global.LocalStorage.movieFavorites)
 
+        self.itemViewModels = viewModels
         return viewModels
     }
 
@@ -98,8 +99,6 @@ class MainViewModel: BaseViewModel {
             self.items = movies
             self.dataSource = MainCollectionViewDataSource(items: self.createCellViewModels(movies))
         }
-
-
     }
 }
 

@@ -38,7 +38,7 @@ class MovieDetailController: BaseViewController {
 
         super.bindViewModel()
 
-        isFavoriteButton.image = viewModel.isFavorite ? #imageLiteral(resourceName: "favoriteStar.png") : nil
+        isFavoriteButton.image = viewModel.isFavorite ? #imageLiteral(resourceName: "favoriteStar.png") : #imageLiteral(resourceName: "unFavoriteStar")
 
         viewModel.successFetch = { [weak self] in
             guard let self = self, let item = self.viewModel.item else { return }
