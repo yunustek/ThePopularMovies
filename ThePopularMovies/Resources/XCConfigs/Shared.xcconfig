@@ -12,5 +12,6 @@ BUILD_NUMBER = 1
 // Configurations
 API_BASE_URL = https:#api.themoviedb.org/3 // # is equal to //
 IMAGE_BASE_URL = https:#image.tmdb.org/t/p/
+API_AUTH_KEY = fd2b04342048fa2d5f728561866ad52a
 API_TIMEOUT_INTERVAL_FOR_REQUEST = 60
 ROOT_STORYBOARD_NAME = Main

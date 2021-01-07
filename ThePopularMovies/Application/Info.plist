@@ -26,6 +26,8 @@
 		<string>${API_BASE_URL}</string>
 		<key>IMAGE_BASE_URL</key>
 		<string>${IMAGE_BASE_URL}</string>
+		<key>API_AUTH_KEY</key>
+		<string>${API_AUTH_KEY}</string>
 		<key>API_TIMEOUT_INTERVAL_FOR_REQUEST</key>
 		<string>${API_TIMEOUT_INTERVAL_FOR_REQUEST}</string>
 		<key>BUNDLE_IDENTIFIER</key>
