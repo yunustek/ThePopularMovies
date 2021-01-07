@@ -161,7 +161,7 @@ extension MainViewController: UICollectionViewDelegate, UIScrollViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 
         let itemCount = viewModel.dataSource.items.count
-        guard itemCount > 20 else { return }
+        guard itemCount >= 20 else { return }
 
         let lastElement = itemCount - 1
         if viewModel.isLoaded, indexPath.item == lastElement {
@@ -202,10 +202,7 @@ extension MainViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard searchText.isEmpty else {
-//            self.filterContentForSearchText(searchText, movies: viewModel.dataSource.items)
-            return
-        }
+        guard searchText.isEmpty else { return }
 
         isFiltering = false
         self.reloadData()
