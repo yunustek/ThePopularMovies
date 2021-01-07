@@ -13,7 +13,7 @@ class MainViewController: BaseViewController {
 
         enum CollectionView {
 
-            static let sectionInset = UIEdgeInsets(top: 12, left: 8, bottom: 8, right: 12)
+            static let sectionInset = UIEdgeInsets(top: 20, left: 14, bottom: 20, right: 14)
             static let minimumLineSpacing: CGFloat = 10
             static let minimumInteritemSpacing: CGFloat = 10
         }

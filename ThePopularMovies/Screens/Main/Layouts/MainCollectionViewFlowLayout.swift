@@ -49,7 +49,8 @@ class MainCollectionViewFlowLayout : UICollectionViewFlowLayout {
         switch displayMode {
         case .list:
 
-            itemSize = CGSize(width: width , height: width / 2)
+            let newWidth = (width - (sectionInset.left + sectionInset.right))
+            itemSize = CGSize(width: newWidth , height: newWidth / 2)
         case .grid:
 
             let newWidth = (width - (minimumInteritemSpacing + sectionInset.left + sectionInset.right)) / 2
