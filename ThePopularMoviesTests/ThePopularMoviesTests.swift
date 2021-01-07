@@ -43,5 +43,36 @@ class ThePopularMoviesTests: XCTestCase {
 
         wait(for: [expect], timeout: 0.5)
     }
+
+    func test_fetch_movie() {
+
+        // Given A Provider
+        let provider = self.provider!
+
+        // When fetch movies
+        let expect = XCTestExpectation(description: "callback")
+
+        provider.fetchMovie(with: .movie(movieId: 755812), successClosure: { movie in
+            expect.fulfill()
+
+            XCTAssertNotNil(movie)
+            XCTAssertEqual(movie?.title?.isEmpty, false)
+            XCTAssertNotNil(movie?.id)
+            XCTAssertNotNil(movie?.poster_path)
+            XCTAssertEqual(movie?.poster_path?.isEmpty, false)
+
+            provider.fetchImage(with: .image(imageId: movie!.poster_path!, widthSize: 400)) { image in
+
+                XCTAssertNotNil(image)
+            } errorClosure: { (error) in
+
+            }
+
+        }, errorClosure: { (error) in
+
+        })
+
+        wait(for: [expect], timeout: 0.5)
+    }
 }
 

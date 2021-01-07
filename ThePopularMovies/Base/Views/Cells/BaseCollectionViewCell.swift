@@ -25,7 +25,6 @@ class BaseCollectionViewCell: UICollectionViewCell, NibProtocol, ReuseProtocol {
     }
 
     func applyStyling() {
-
-        backgroundColor = .clear
+        
     }
 }

@@ -7,7 +7,11 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, BaseController {
+
+    var localStorage: LocalStorageProtocol! {
+        return LocalStorage(userDefaults: UserDefaults.standard)
+    }
 
     override func viewDidLoad() {
 
@@ -23,6 +27,19 @@ class BaseViewController: UIViewController {
 
     func applyStyling() {
 
-        view.backgroundColor = .clear
+    }
+
+    // Coordinator
+
+    func push(_ viewController: UIViewController, animated: Bool = true) {
+
+        self.navigationController?.pushViewController(viewController, animated: animated)
+    }
+
+    func push(storyboardName: Global.Storyboard, animated: Bool = true) {
+
+        let storyboard = UIStoryboard(name: storyboardName.rawValue, bundle: nil)
+        let controller = storyboard.instantiateInitialViewController()
+        self.push(controller!, animated: animated)
     }
 }
