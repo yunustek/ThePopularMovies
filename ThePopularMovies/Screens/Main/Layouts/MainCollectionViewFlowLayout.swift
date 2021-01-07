@@ -35,8 +35,6 @@ class MainCollectionViewFlowLayout : UICollectionViewFlowLayout {
         self.init()
 
         self.displayMode = displayMode
-        self.minimumLineSpacing = 10
-        self.minimumInteritemSpacing = 10
         self.configureDisplayMode()
     }
 
@@ -56,6 +54,8 @@ class MainCollectionViewFlowLayout : UICollectionViewFlowLayout {
             let newWidth = (width - (minimumInteritemSpacing + sectionInset.left + sectionInset.right)) / 2
             itemSize = CGSize(width: newWidth , height: newWidth * 1.5)
         }
+
+        headerReferenceSize = CGSize(width: width, height: 50)
     }
 
     override func invalidateLayout() {

@@ -18,6 +18,7 @@ class MainViewModel: BaseViewModel {
     // MARK: Privates
 
     var items: [Movie] = []
+    var itemViewModels: [MovieCellViewModel] = []
     private(set) var dataSource: MainCollectionViewDataSource<MovieCell, MovieCellViewModel>! {
         didSet {
             successFetch()
@@ -52,15 +53,16 @@ class MainViewModel: BaseViewModel {
         provider.fetchMovies(with: .movies(pageNo: pageNo), successClosure: { [weak self] movies in
             guard let self = self, let movies = movies?.results else { return }
 
-            var itemsViewModels = self.createCellViewModels(movies)
+            var viewModels = self.createCellViewModels(movies)
 
             if var items = self.dataSource?.items {
-                items.append(contentsOf: itemsViewModels)
-                itemsViewModels = items
+                items.append(contentsOf: viewModels)
+                viewModels = items
             }
 
             self.items = movies
-            self.dataSource = MainCollectionViewDataSource(items: itemsViewModels)
+            self.itemViewModels = viewModels
+            self.dataSource = MainCollectionViewDataSource(items: viewModels)
             self.isLoaded = true
         }, errorClosure: errorClosure)
    }

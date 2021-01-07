@@ -25,9 +25,17 @@ class MainViewController: BaseViewController {
 
     // MARKS: Variables
     var viewModel = MainViewModel(provider: Provider())
-    let collectionViewLayout = MainCollectionViewFlowLayout()
-    var changeDisplayModeButton: UIBarButtonItem!
-    var itemPageNumber = 1
+    private let collectionViewLayout = MainCollectionViewFlowLayout()
+    private var changeDisplayModeButton: UIBarButtonItem!
+    private var itemPageNumber = 1
+
+    // Search
+    private var filteredItems: [MovieCellViewModel] = []
+    var isFiltering: Bool = false {
+        didSet {
+            reloadData()
+        }
+    }
 
     override func viewDidLoad() {
 
@@ -78,6 +86,12 @@ class MainViewController: BaseViewController {
 
     private func reloadData() {
 
+        var items = viewModel.itemViewModels
+        if isFiltering {
+            items = filteredItems
+        }
+
+        viewModel.dataSource.items = items
         self.collectionView.dataSource = viewModel.dataSource
         self.collectionView.reloadData()
     }
@@ -146,12 +160,55 @@ extension MainViewController: UICollectionViewDelegate, UIScrollViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 
-        let lastElement = viewModel.dataSource.items.count - 1
+        let itemCount = viewModel.dataSource.items.count
+        guard itemCount > 20 else { return }
+
+        let lastElement = itemCount - 1
         if viewModel.isLoaded, indexPath.item == lastElement {
 
             itemPageNumber += 1
             viewModel.fetchMovies(pageNo: itemPageNumber)
         }
+    }
+}
+
+// MARK: - SearchBar
+
+extension MainViewController {
+
+    func filterContentForSearchText(_ searchText: String, movies: [MovieCellViewModel]?) {
+
+        guard let movies = movies else { return }
+
+        isFiltering = true
+        filteredItems = movies.filter { (movie: MovieCellViewModel) -> Bool in
+            return (movie.title ?? "").lowercased().contains(searchText.lowercased())
+        }
+
+        reloadData()
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            isFiltering = false
+            return
+        }
+
+        self.filterContentForSearchText(searchText, movies: viewModel.dataSource.items)
+        self.reloadData()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText.isEmpty else {
+//            self.filterContentForSearchText(searchText, movies: viewModel.dataSource.items)
+            return
+        }
+
+        isFiltering = false
+        self.reloadData()
     }
 }
 

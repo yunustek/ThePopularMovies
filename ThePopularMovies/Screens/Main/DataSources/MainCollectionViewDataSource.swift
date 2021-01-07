@@ -32,4 +32,15 @@ class MainCollectionViewDataSource<Cell: MovieCell, T>: NSObject, UICollectionVi
 
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        if (kind == UICollectionView.elementKindSectionHeader) {
+            let headerView: UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MainCollectionViewHeader", for: indexPath)
+
+            return headerView
+        }
+
+        return UICollectionReusableView()
+    }
 }
